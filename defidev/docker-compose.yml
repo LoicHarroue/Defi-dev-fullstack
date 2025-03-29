@@ -12,6 +12,7 @@ services:
     depends_on:
       - db
     environment:
+      - DATABASE_HOST=db
       - DATABASE_URL=postgres://postgres:postgres@db:5432/defidev
       - ELASTICSEARCH_DSL_DEFAULT_HOST=${ELASTICSEARCH_DSL_DEFAULT_HOST}
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}

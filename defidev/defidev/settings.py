@@ -85,8 +85,11 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME', 'defidev'),
         'USER': os.getenv('DB_USER', 'postgres'),
         'PASSWORD': os.getenv('DB_PASSWORD', 'postgres'),
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432',
+        'OPTIONS': {
+            'client_encoding': 'UTF8',
+        },
     }
 }
 

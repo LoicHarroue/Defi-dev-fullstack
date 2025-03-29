@@ -53,6 +53,7 @@ class Joueur(models.Model):
         return self.nom
 
 class Match(models.Model):
+    id_match = models.AutoField(primary_key=True)
     equipe_domicile = models.ForeignKey(Equipe, on_delete=models.CASCADE, related_name="matchs_domicile")
     equipe_exterieur = models.ForeignKey(Equipe, on_delete=models.CASCADE, related_name="matchs_exterieur")
     buts_domicile = models.PositiveIntegerField(default=0)

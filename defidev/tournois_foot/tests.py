@@ -76,5 +76,5 @@ class MatchTests(TestCase):
         Match.objects.create(equipe_domicile=self.equipe1, equipe_exterieur=self.equipe2, buts_domicile=1, buts_exterieur=1)
 
         with self.assertRaises(Exception):  # Vérifie qu'un 2ème match identique est refusé
-            Match.objects.create(equipe_domicile=self.equipe1, equipe_exterieur=self.equipe2, buts_domicile=0, buts_exterieur=0)
+            Match.objects.create(equipe_domicile=self.equipe1, equipe_exterieur=self.equipe2, buts_domicile=1, buts_exterieur=1)
 
