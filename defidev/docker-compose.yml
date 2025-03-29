@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  # Service pour l'application Django
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/defidev
+      - ELASTICSEARCH_DSL_DEFAULT_HOST=${ELASTICSEARCH_DSL_DEFAULT_HOST}
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - ELASTICSEARCH_API_KEY=${ELASTICSEARCH_API_KEY}
+
+  # Service pour la base de données PostgreSQL
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: defidev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  # Service pour Elasticsearch
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+
+volumes:
+  postgres_data:
+
+networks:
+  backend:
+    driver: bridge

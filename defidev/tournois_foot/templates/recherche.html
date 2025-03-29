@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}API Foot{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% include 'includes/navbar.html' %}
+
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <h2>Recherche avancée</h2>
+    <form method="get">
+        <input type="text" name="q" placeholder="Rechercher une équipe ou un joueur..." value="{{ query }}">
+        <button type="submit">Rechercher</button>
+    </form>
+
+    {% if results %}
+        <h2>Résultats pour "{{ query }}"</h2>
+        <h3>Équipes</h3>
+        <ul>
+            {% for equipe in results.equipes %}
+                <li>{{ equipe.nom }} - {{ equipe.ville }}</li>
+            {% empty %}
+                <li>Aucune équipe trouvée.</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Joueurs</h3>
+        <ul>
+            {% for joueur in results.joueurs %}
+                <li>{{ joueur.nom }} - Poste : {{ joueur.poste }} (Équipe : {{ joueur.equipe_nom }})</li>
+            {% empty %}
+                <li>Aucun joueur trouvé.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

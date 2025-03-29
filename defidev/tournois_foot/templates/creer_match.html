@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}API Foot{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body class="container mt-4">
+    {% include 'includes/navbar.html' %}
+
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <h2>Créer un Match</h2>
+    <form method="post" class="mt-3">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Ajouter Match</button>
+    </form>
+    <a href="{% url 'classement' %}" class="btn btn-secondary mt-3">Voir le Classement</a>
+</body>
+</html>

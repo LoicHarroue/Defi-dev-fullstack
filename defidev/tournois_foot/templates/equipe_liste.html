@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}API Foot{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body class="container mt-4">
+    {% include 'includes/navbar.html' %}
+
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div class="container mt-5">
+        <h1>Liste des équipes</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Ville</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for equipe in equipes %}
+                    <tr>
+                        <td>{{ equipe.nom }}</td>
+                        <td>{{ equipe.ville }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'creer_equipe' %}" class="btn btn-primary">Créer une équipe</a>
+    </div>
+</body>
+</html>

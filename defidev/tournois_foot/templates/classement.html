@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}API Foot{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body class="container mt-4">
+    {% include 'includes/navbar.html' %}
+
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <h2>Classement des Équipes</h2>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Équipe</th>
+                <th>Points</th>
+                <th>Buts Marqués</th>
+                <th>Buts Encaissés</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for equipe in equipes %}
+            <tr>
+                <td>{{ equipe.nom }}</td>
+                <td>{{ equipe.points }}</td>
+                <td>{{ equipe.buts_marques }}</td>
+                <td>{{ equipe.buts_encaisses }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'creer_match' %}" class="btn btn-primary mt-3">Ajouter un Match</a>
+</body>
+</html>
