@@ -94,9 +94,10 @@ def creer_match(request):
     return render(request, "creer_match.html", {"form": form})
 
 def classement(request):
-    """Affiche le classement des équipes, trié par points puis buts marqués"""
-    equipes = Equipe.objects.all().order_by("-points", "-buts_marques")
-    return render(request, "classement.html", {"equipes": equipes})
+    """Affiche la liste des matchs, triés par id_match."""
+    matchs = Match.objects.all().order_by('id_match')
+    return render(request, "classement.html", {"matchs": matchs})
+
 
 def recherche(request):
     query = request.GET.get('q', '')

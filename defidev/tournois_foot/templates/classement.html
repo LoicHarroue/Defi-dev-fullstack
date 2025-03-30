@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}API Foot{% endblock %}</title>
+    <title>{% block title %}API Foot - Liste des Matchs{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
@@ -11,26 +11,30 @@
     {% include 'includes/navbar.html' %}
 
     <div class="container mt-4">
-        {% block content %}
-        {% endblock %}
+        {% block content %}{% endblock %}
     </div>
-    <h2>Classement des Équipes</h2>
+
+    <h2>Liste des Matchs</h2>
     <table class="table table-striped mt-3">
         <thead>
             <tr>
-                <th>Équipe</th>
-                <th>Points</th>
-                <th>Buts Marqués</th>
-                <th>Buts Encaissés</th>
+                <th>ID</th>
+                <th>Équipe Domicile</th>
+                <th>Score</th>
+                <th>Équipe Visiteur</th>
             </tr>
         </thead>
         <tbody>
-            {% for equipe in equipes %}
+            {% for match in matchs %}
             <tr>
-                <td>{{ equipe.nom }}</td>
-                <td>{{ equipe.points }}</td>
-                <td>{{ equipe.buts_marques }}</td>
-                <td>{{ equipe.buts_encaisses }}</td>
+                <td>{{ match.id_match }}</td>
+                <td>{{ match.equipe_domicile.nom }}</td>
+                <td>{{ match.buts_domicile }} - {{ match.buts_exterieur }}</td>
+                <td>{{ match.equipe_exterieur.nom }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">Aucun match disponible.</td>
             </tr>
             {% endfor %}
         </tbody>

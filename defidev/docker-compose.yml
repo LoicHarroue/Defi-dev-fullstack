@@ -3,10 +3,13 @@ version: '3.8'
 services:
   # Service pour l'application Django
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
+      - ./pip_cache:/root/.cache/pip
     ports:
       - "8000:8000"
     depends_on:

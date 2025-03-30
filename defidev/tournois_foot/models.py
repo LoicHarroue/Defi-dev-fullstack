@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 # Create your models here.
 class Equipe(models.Model):
     nom = models.CharField(max_length=50)
-    ville = models.CharField(max_length=100)
+    ville = models.CharField(max_length=100, default='Inconnu')
     buts_marques = models.PositiveIntegerField(default=0)
     buts_encaisses = models.PositiveIntegerField(default=0)
     points = models.PositiveIntegerField(default=0)
@@ -54,8 +54,8 @@ class Joueur(models.Model):
 
 class Match(models.Model):
     id_match = models.AutoField(primary_key=True)
-    equipe_domicile = models.ForeignKey(Equipe, on_delete=models.CASCADE, related_name="matchs_domicile")
-    equipe_exterieur = models.ForeignKey(Equipe, on_delete=models.CASCADE, related_name="matchs_exterieur")
+    equipe_domicile = models.ForeignKey(Equipe, on_delete=models.CASCADE, related_name="matchs_domicile", default='Inconnu')
+    equipe_exterieur = models.ForeignKey(Equipe, on_delete=models.CASCADE, related_name="matchs_exterieur", default='Inconnu')
     buts_domicile = models.PositiveIntegerField(default=0)
     buts_exterieur = models.PositiveIntegerField(default=0)
 

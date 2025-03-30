@@ -20,7 +20,7 @@ class MatchSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Match
-        fields = ['id', 'equipe_domicile', 'equipe_exterieur', 'buts_domicile', 'buts_exterieur', 'date']
+        fields = ['id_match', 'equipe_domicile', 'equipe_exterieur', 'buts_domicile', 'buts_exterieur']
 
     def create(self, validated_data):
         """Override create pour mettre à jour les stats des équipes après un match"""
