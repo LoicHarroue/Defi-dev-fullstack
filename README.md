@@ -3,7 +3,7 @@ Test technique Scanlitt
 
 
 # Installation 
-Après avoir déployer le projet dans Docker, vous pouvez l'ouvrir dans un IDE (VSCode) 
+Après avoir déployer le projet dans Docker (build puis up), vous pouvez l'ouvrir dans un IDE (VSCode) 
 et exécuter ces commandes :
 
 docker exec -it defidev-web-1 bash
